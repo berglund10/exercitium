@@ -43,8 +43,7 @@ abstract class Exercise {
     }
 
     if (sets == 0) {
-      done = true;
-      return true;
+      return done;
     } else {
       return false;
     }

@@ -50,6 +50,7 @@ void main() {
       //Adding Deadlift to this workout
       //Adding Bench Press to this workout
       //Adding Pull-Ups to this workout
+      w.workout(deadlift, 5);
       //You need to start an workout before you can exercise.
       w.start();
       w.workout(deadlift, 5);
