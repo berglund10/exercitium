@@ -10,6 +10,8 @@ class WeightTraining extends Exercise {
       required super.sets});
 }
 
+class GymWorkout extends Workout {}
+
 void main() {
   WeightTraining? deadlift = WeightTraining(
       name: 'Deadlift',
@@ -37,7 +39,8 @@ void main() {
       rest: 60,
       weight: 80);
 
-      var w = Workout();
+
+      var w = GymWorkout();
 
       w.start();
       //Can't start workout because there are 0 exercises
@@ -46,11 +49,11 @@ void main() {
       w.addExercise(benchPress);
       w.addExercise(pullups);
 
-      w.updateExercise(deadlift, repetition: 20, sets: 3, rest: 30, weight: 10);
+      w.updateExercise(deadlift, repetition: 10, sets: 3, rest: 30, weight: 10);
       //Adding Deadlift to this workout
       //Adding Bench Press to this workout
       //Adding Pull-Ups to this workout
-      w.workout(deadlift, 5);
+      //w.workout(deadlift, 5);
       //You need to start an workout before you can exercise.
       w.start();
       w.workout(deadlift, 5);
@@ -58,13 +61,6 @@ void main() {
       w.workout(deadlift, 5);
       w.workout(deadlift, 5);
 
-      w.workout(deadlift, 5);
-      w.workout(deadlift, 5);
-      w.workout(deadlift, 5);
-      w.workout(deadlift, 5);
-
-      w.workout(deadlift, 5);
-      w.workout(deadlift, 5);
       w.workout(deadlift, 5);
       w.workout(deadlift, 5);
       deadlift = null;

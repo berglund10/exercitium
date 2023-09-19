@@ -2,7 +2,7 @@ import 'package:exercitium/src/exercise.dart';
 
 enum Status { ongoing, paused, finish }
 
-class Workout {
+abstract class Workout {
   Status _status = Status.paused;
 
   final List<Exercise> _exercises = [];

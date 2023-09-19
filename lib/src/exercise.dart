@@ -20,9 +20,13 @@ abstract class Exercise {
     index = repetition;
   }
 
-  void updateExercise({required int repetition, required int weight, required int sets, required int rest}) {
+  void updateExercise(
+      {required int repetition,
+      required int weight,
+      required int sets,
+      required int rest}) {
     done = false;
-    if(repetition < 0 || weight < 0 || sets <0 || rest < 0) {
+    if (repetition < 0 || weight < 0 || sets < 0 || rest < 0) {
       print("Can't update with negative values");
     }
 
@@ -34,17 +38,18 @@ abstract class Exercise {
   }
 
   bool oneExercise({required int repetition}) {
-    if(this.repetition - repetition == 0) {
+    if (this.repetition - repetition == 0) {
       print("One set done, good job");
       sets--;
       this.repetition = index;
+      if (sets == 0) {
+        done = true;
+        return done;
+      } else {
+        return false;
+      }
     } else {
       this.repetition -= repetition;
-    }
-
-    if (sets == 0) {
-      return done;
-    } else {
       return false;
     }
   }
