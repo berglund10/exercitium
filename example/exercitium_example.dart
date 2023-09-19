@@ -63,6 +63,11 @@ void main() {
 
       w.workout(deadlift, 5);
       w.workout(deadlift, 5);
+
+      w.workout(deadlift, 5);
+      //This exercise is already done
+
+
       deadlift = null;
 
 

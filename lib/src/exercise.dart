@@ -38,6 +38,9 @@ abstract class Exercise {
   }
 
   bool oneExercise({required int repetition}) {
+    if(done) {
+      return done;
+    }
     if (this.repetition - repetition == 0) {
       print("One set done, good job");
       sets--;

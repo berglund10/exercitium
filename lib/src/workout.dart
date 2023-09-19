@@ -63,11 +63,20 @@ abstract class Workout {
     }
   }
 
-  void updateExercise(Exercise exercise, {required int repetition, required int weight, required int sets, required int rest}) {
-      exercise.updateExercise(repetition: repetition, weight: weight, sets: sets, rest: rest);
+  void updateExercise(Exercise exercise,
+      {required int repetition,
+      required int weight,
+      required int sets,
+      required int rest}) {
+    exercise.updateExercise(
+        repetition: repetition, weight: weight, sets: sets, rest: rest);
   }
 
   void workout(Exercise exercise, int repetition) {
+    if (exercise.done) {
+      print("This exercise is already done");
+      return;
+    }
     if (_status == Status.ongoing) {
       bool finished = exercise.oneExercise(repetition: repetition);
 
