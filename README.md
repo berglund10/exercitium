@@ -19,7 +19,9 @@ Biblioteket består av två olika klasser, exercise och workout som ska underlä
 
 Efter att du har importerat paketet behöver du skapa egna Exercise klasser som ärver av exercise.
 
-Exempelvis: 
+Exempelvis:
+
+```dart
 
 class WeightTraining extends Exercise {
   WeightTraining(
