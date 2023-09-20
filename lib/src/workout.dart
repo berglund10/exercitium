@@ -44,6 +44,7 @@ abstract class Workout {
     }
     if (!_exercises.contains(exercise)) {
       print("Adding ${exercise.name} to this workout");
+      exercise.done = false;
       _exercises.add(exercise);
     } else {
       print("${exercise.name} is already registered");

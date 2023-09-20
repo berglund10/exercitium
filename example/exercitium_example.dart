@@ -46,7 +46,33 @@ gw.workout(deadlift, 10);
 gw.workout(deadlift, 10);
 gw.workout(deadlift, 10);
 gw.workout(deadlift, 10);
+gw.workout(deadlift, 10);
+gw.addExercise(deadlift);
+gw.start();
+gw.workout(deadlift, 10);
 gw.getStatus();
+
+var wg = GymWorkout();
+wg.addExercise(pullups);
+wg.start();
+wg.workout(pullups, 10);
+wg.workout(pullups, 10);
+wg.workout(pullups, 10);
+wg.workout(pullups, 10);
+
+wg.addExercise(deadlift);
+wg.start();
+wg.workout(deadlift, 10);
+wg.workout(deadlift, 10);
+wg.workout(deadlift, 10);
+wg.workout(deadlift, 10);
+
+
+Workout.workoutList.length;
+for (var i = 0; i < Workout.workoutList.length; i++) {
+  Workout.workoutList[i].printDoneExercises();
+  
+}
 
 
 }
