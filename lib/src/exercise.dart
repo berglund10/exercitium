@@ -6,8 +6,10 @@ abstract class Exercise {
   int sets;
   int rest;
   bool done = false;
-  int index = 0;
-  static List<Exercise> exerciseList = [];
+  int initialRepetition = 0;
+  int initialSets = 0;
+  bool isDeleted = false;
+  static final List<Exercise> exerciseList = [];
 
   Exercise(
       {required this.name,
@@ -17,7 +19,8 @@ abstract class Exercise {
       required this.rest,
       required this.sets}) {
     exerciseList.add(this);
-    index = repetition;
+    initialRepetition = repetition;
+    initialSets = sets;
   }
 
   void updateExercise(
@@ -34,7 +37,12 @@ abstract class Exercise {
     this.weight = weight.abs();
     this.sets = sets.abs();
     this.rest = rest.abs();
-    index = this.repetition;
+    initialRepetition = this.repetition;
+    initialSets = this.sets;
+  }
+
+  void deleteExercise({bool isDeleted = true}) {
+    this.isDeleted = isDeleted;
   }
 
   bool oneExercise({required int repetition}) {
@@ -42,11 +50,12 @@ abstract class Exercise {
       return done;
     }
     if (this.repetition - repetition == 0) {
-      print("One set done, good job");
       sets--;
-      this.repetition = index;
+      print("Good job, $sets sets left");
+      this.repetition = initialRepetition;
       if (sets == 0) {
         done = true;
+        sets = initialSets;
         return done;
       } else {
         return false;

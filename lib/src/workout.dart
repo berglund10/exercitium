@@ -6,8 +6,12 @@ abstract class Workout {
   Status _status = Status.paused;
 
   final List<Exercise> _exercises = [];
+  final List<Exercise> _doneExercises = [];
+  static List<Workout> workoutList = [];
 
-  Workout();
+  Workout() {
+    workoutList.add(this);
+  }
 
   void start() {
     if (_exercises.isEmpty) {
@@ -33,6 +37,10 @@ abstract class Workout {
     if (_status == Status.finish) {
       print("This workout is already over");
     }
+    if (exercise.isDeleted == true) {
+      print("This exercise is deleted");
+      return;
+    }
     if (!_exercises.contains(exercise)) {
       print("Adding ${exercise.name} to this workout");
       _exercises.add(exercise);
@@ -52,8 +60,8 @@ abstract class Workout {
 
   List<Exercise> getExercises() {
     if (_exercises.isEmpty) {
-      _status = Status.finish;
-      print("There is no exercises registered, stopping workout.");
+      _status = Status.paused;
+      print("There is no exercises registered, pausing workout.");
       return [];
     } else {
       for (var i = 0; i < _exercises.length; i++) {
@@ -72,7 +80,26 @@ abstract class Workout {
         repetition: repetition, weight: weight, sets: sets, rest: rest);
   }
 
+  List<Exercise> getDoneExercises() {
+    return _doneExercises;
+  }
+
+  void printDoneExercises() {
+    for (var i = 0; i < _doneExercises.length; i++) {
+      print("------------------Info about exercise------------------");
+      print("Name: ${_doneExercises[i].name}");
+      print("Sets: ${_doneExercises[i].sets}");
+      print("Repetitions: ${_doneExercises[i].repetition}");
+      print("Weight: ${_doneExercises[i].weight}");
+      print("Rest: ${_doneExercises[i].rest}");
+    }
+  }
+
   void workout(Exercise exercise, int repetition) {
+    if (exercise.isDeleted) {
+      print("This exercise is deleted");
+      return;
+    }
     if (exercise.done) {
       print("This exercise is already done");
       return;
@@ -82,6 +109,7 @@ abstract class Workout {
 
       if (finished == true) {
         print("Exercise is done.");
+        _doneExercises.add(exercise);
         removeExercise(exercise);
         _status = Status.finish;
       } else {

@@ -10,6 +10,16 @@ class WeightTraining extends Exercise {
       required super.sets});
 }
 
+class Running extends Exercise {
+  Running(
+      {required super.name,
+      required super.description,
+      required super.repetition,
+      required super.weight,
+      required super.rest,
+      required super.sets});
+}
+
 class GymWorkout extends Workout {}
 
 void main() {
@@ -21,7 +31,13 @@ void main() {
       rest: 60,
       weight: 150);
 
-      deadlift.updateExercise(repetition: 20, sets: 3, rest: 30, weight: 10);
+  Running run = Running(
+      name: "Running",
+      description: "Exercise info for running",
+      repetition: 10,
+      weight: 0,
+      rest: 60,
+      sets: 2);
 
   var benchPress = WeightTraining(
       name: 'Bench Press',
@@ -39,38 +55,49 @@ void main() {
       rest: 60,
       weight: 80);
 
+  print(Exercise.exerciseList[1]);
 
-      var w = GymWorkout();
+  var w = GymWorkout();
 
-      w.start();
-      //Can't start workout because there are 0 exercises
+  pullups.deleteExercise();
 
-      w.addExercise(deadlift);
-      w.addExercise(benchPress);
-      w.addExercise(pullups);
+  print(w.getExercises().length);
 
-      w.updateExercise(deadlift, repetition: 10, sets: 3, rest: 30, weight: 10);
-      //Adding Deadlift to this workout
-      //Adding Bench Press to this workout
-      //Adding Pull-Ups to this workout
-      //w.workout(deadlift, 5);
-      //You need to start an workout before you can exercise.
-      w.start();
-      w.workout(deadlift, 5);
-      w.workout(deadlift, 5);
-      w.workout(deadlift, 5);
-      w.workout(deadlift, 5);
+  w.addExercise(run);
+  w.addExercise(run);
 
-      w.workout(deadlift, 5);
-      w.workout(deadlift, 5);
+  w.addExercise(benchPress);
 
-      w.workout(deadlift, 5);
-      //This exercise is already done
+  print(w.getStatus());
 
+  w.addExercise(pullups);
 
-      deadlift = null;
+  w.addExercise(Exercise.exerciseList[0]);
 
+  w.getExercises();
 
-     // w.start();
+  w.workout(run, 10);
 
+  w.start();
+
+  w.workout(run, 10);
+
+  w.workout(run, 10);
+
+  w.workout(run, 10);
+
+  w.workout(run, 10);
+
+  w.start();
+
+  w.workout(benchPress, 5);
+  //Endpoint som tar emot vilken övning och hur många reps;
+  w.workout(benchPress, 5);
+  w.workout(benchPress, 5);
+  w.workout(benchPress, 5);
+  w.workout(benchPress, 5);
+  w.workout(benchPress, 5);
+  w.workout(benchPress, 5);
+  //Endpoint som visar alla färdiga övningar
+  w.printDoneExercises();
 }
