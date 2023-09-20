@@ -11,29 +11,62 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Biblioteket består av två olika klasser, exercise och workout som ska underlätta skapandet av ett träningssystem.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Efter att du har importerat paketet behöver du skapa egna Exercise klasser som ärver av exercise.
 
-## Usage
+Exempelvis: 
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+class WeightTraining extends Exercise {
+  WeightTraining(
+      {required super.name,
+      required super.description,
+      required super.repetition,
+      required super.weight,
+      required super.rest,
+      required super.sets});
+}
 
-```dart
-const like = 'sample';
-```
+class Running extends Exercise {
+  Running(
+      {required super.name,
+      required super.description,
+      required super.repetition,
+      required super.weight,
+      required super.rest,
+      required super.sets});
+}
 
-## Additional information
+Sedan skapa nya instanser av klassen med required named variabler.
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+  WeightTraining deadlift = WeightTraining(
+      name: 'Deadlift',
+      description: 'Exercise info for deadlift',
+      sets: 3,
+      repetition: 10,
+      rest: 60,
+      weight: 150);
+
+Nästa steg är att skapa en instans av workout klassen, denna är också abstrakt så behöver ärvas av en annan klass.
+
+class GymWorkout extends Workout {}
+
+var gw = GymWorkout();
+
+I workout klassen finns samtliga metoder som kan användas nedan visas några exempel.
+
+gw.start(); Can't start workout because there are 0 exercises
+gw.addExercise(deadlift); //Adding Deadlift to this workout
+gw.start();
+gw.workout(deadlift, 10); // Good job, 2 sets left
+gw.workout(deadlift, 10); // Good job, 1 sets left
+gw.workout(deadlift, 10); // Good job, 0 sets left
+//Exercise is done.
+//Removed Deadlift from this workout
+gw.workout(deadlift, 10); // This exercise is already done
+gw.getStatus(); // Status.finish
+

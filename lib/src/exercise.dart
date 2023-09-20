@@ -46,7 +46,7 @@ abstract class Exercise {
   }
 
   bool oneExercise({required int repetition}) {
-    if(done) {
+    if (done) {
       return done;
     }
     if (this.repetition - repetition == 0) {

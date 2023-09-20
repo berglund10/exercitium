@@ -30,6 +30,7 @@ abstract class Workout {
   }
 
   Status getStatus() {
+    print(_status);
     return _status;
   }
 
@@ -96,6 +97,10 @@ abstract class Workout {
   }
 
   void workout(Exercise exercise, int repetition) {
+    if(_status == Status.paused) {
+      print("Workout is paused, please start before continue");
+      return;
+    }
     if (exercise.isDeleted) {
       print("This exercise is deleted");
       return;
@@ -105,6 +110,10 @@ abstract class Workout {
       return;
     }
     if (_status == Status.ongoing) {
+      if(!_exercises.contains(exercise)) {
+        print("This exercise isn't in the workout list");
+        return;
+      }
       bool finished = exercise.oneExercise(repetition: repetition);
 
       if (finished == true) {
